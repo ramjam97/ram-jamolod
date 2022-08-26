@@ -7,6 +7,7 @@
     <title>Ramil Icalina Jamolod</title>
 </head>
 <body>
-    <p>Test</p>
+    <h1>Welcome!</h1>
+    <p>This is a sample</p>
 </body>
 </html>
