@@ -12,7 +12,7 @@
 
 <body>
     <div class="container">
-        <h1 class="text-primary">Hello World!</h1>
+        <h1 class="text-primary">Hello!</h1>
         <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque nisi ex illo quaerat quo, esse repudiandae nemo dignissimos nobis quos excepturi sit tempora amet nulla necessitatibus quasi cum odio facilis?</p>
     </div>
 </body>
