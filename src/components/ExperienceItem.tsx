@@ -36,7 +36,8 @@ const ExperienceItem = (props: ExperiencesItemProps) => {
                     <div className="font-semibold">{item.company}</div>
                     <div className="text-sm text-base-content/70">{item.address}</div>
                 </summary>
-                <div className="collapse-content text-sm">
+                <div className="collapse-content text-sm px-1 mt-1">
+                    <span className="font-semibold">Key Achievements:</span>
                     <ul className="list-none space-y-1">
                         {item.contributions.map((contribution, index) => <li key={index} className="relative pl-5 before:content-['→'] before:absolute before:left-0 before:text-base-content">
                             <div>
