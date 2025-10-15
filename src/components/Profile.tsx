@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
-import { AppContext } from '../App'
-import Card from './Card';
-import DownloadButton from './DownloadButton';
+import { AppContext } from '@/App'
+import Card from '@/components/Card';
+import DownloadButton from '@/components/DownloadButton';
 
 
 const Profile = () => {
@@ -14,14 +14,14 @@ const Profile = () => {
 
     return <>
         <Card>
-            
+
             <span className='absolute top-2 right-2'>
                 <button className='btn btn-soft btn-primary rounded-full btn-square btn-sm' onClick={() => setShowThemeController(true)} disabled={showThemeController}>
                     <i className='pi pi-palette'></i>
                 </button>
             </span>
 
-            <span className='md:w-full w-[50%] mx-auto p-3 flex items-center justify-center'>
+            <span className='sm:w-[40%] md:w-full w-[50%] mx-auto p-3 flex items-center justify-center'>
                 <img src={data.img} className='rounded-full' />
             </span>
 

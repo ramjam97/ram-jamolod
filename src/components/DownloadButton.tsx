@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import cv from '../assets/cv.pdf';
-import { AppContext } from '../App';
+import cv from '@/assets/cv.pdf';
+import { AppContext } from '@/App';
 
 const DownloadButton = () => {
 
@@ -14,14 +14,17 @@ const DownloadButton = () => {
 
         const link = document.createElement('a');
         link.href = cv;
-        link.download = data.name + ' (cv).pdf';
+        link.download = `${data.name} (cv).pdf`;
+
+        document.body.appendChild(link);
         link.click();
+        document.body.removeChild(link);
 
         setTimeout(() => {
             setIsDownloading(false);
             setShowSuccessIcon(true);
         }, 500);
-    }
+    };
 
     useEffect(() => {
         if (showSuccessIcon) setTimeout(() => setShowSuccessIcon(false), 1000);

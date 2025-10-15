@@ -1,12 +1,12 @@
-import SkillSet from "./SkillSet";
-import Card from "./Card";
-import type { SkillItem } from "../details/types";
+import { useContext } from "react";
+import { AppContext } from "@/App";
+import SkillSet from "@/components/SkillSet";
+import Card from "@/components/Card";
 
-interface SkillsProps {
-    skills: SkillItem[]
-}
+const Skills = () => {
 
-const Skills = ({ skills }: SkillsProps) => {
+    const { data } = useContext(AppContext);
+    const skills = data.technical_skills || [];
 
     return <>
         {skills.length > 0 &&

@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import type { ExperienceItemProps } from "../details/types";
+import type { ExperienceItemProps } from "@/types/cv";
 
 interface ExperiencesItemProps {
     index: number;

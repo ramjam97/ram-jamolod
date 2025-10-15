@@ -1,14 +1,13 @@
-import { useState } from "react";
-import ExperienceItem from "./ExperienceItem";
-import Card from "./Card";
-import type { ExperienceItemProps } from "../details/types";
+import { useContext, useState } from "react";
+import { AppContext } from "@/App";
+import ExperienceItem from "@/components/ExperienceItem";
+import Card from "@/components/Card";
 
+const Experience = () => {
 
-interface ExperienceProps {
-    experience: ExperienceItemProps[]
-}
+    const { data } = useContext(AppContext);
 
-const Experience = ({ experience }: ExperienceProps) => {
+    const experience = data.experience || [];
 
     const [collapsedItems, setCollapsedItems] = useState<number[]>([]);
 

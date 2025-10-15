@@ -1,11 +1,14 @@
-import Card from './Card';
+import { useContext } from 'react';
+import { AppContext } from '@/App';
+import Card from '@/components/Card';
 
-interface ContactProps {
-    phone_numbers: string[],
-    emails: string[]
-}
 
-const Contact = ({ phone_numbers, emails }: ContactProps) => {
+const Contact = () => {
+
+    const { data } = useContext(AppContext);
+
+    const phone_numbers = data.phone_numbers || [];
+    const emails = data.emails || [];
 
     return <>
         {(phone_numbers.length > 0 || emails.length > 0) &&

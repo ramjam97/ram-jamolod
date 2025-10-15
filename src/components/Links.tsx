@@ -1,11 +1,13 @@
-import Card from './Card';
-import type { LinkItem } from '../details/types';
+import { useContext } from 'react';
+import { AppContext } from '@/App';
+import Card from '@/components/Card';
 
-interface LinksProps {
-    links: LinkItem[]
-}
 
-const Links = ({ links }: LinksProps) => {
+const Links = () => {
+
+    const { data } = useContext(AppContext);
+
+    const links = data.links || [];
 
     return <>
         {links.length > 0 &&

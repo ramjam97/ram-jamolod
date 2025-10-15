@@ -1,9 +1,10 @@
 import { useContext, useEffect, useRef } from "react";
-import { AppContext } from "../App";
-import { THEMES_COLLECTION } from "../details/themes";
-import ThemeItem from "./ThemeItem";
+import { AppContext } from "@/App";
+import { THEMES_COLLECTION } from "@/constant/themes";
+import ThemeItem from "@/components/ThemeItem";
 
 const ThemeDrawer = () => {
+
     const { showThemeController, setShowThemeController } = useContext(AppContext);
 
     const cb = useRef<HTMLInputElement>(null);
