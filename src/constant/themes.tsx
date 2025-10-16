@@ -3,6 +3,8 @@ export const THEME_SESSION_NAME = "portfolio-theme";
 export const DEFAULT_THEME = "light";
 export const THEMES_COLLECTION = [
     "ramjam",
+    "tinykitten",
+    "glassflip",
     "light",
     "dark",
     "cupcake",
