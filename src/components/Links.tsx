@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { AppContext } from '@/App';
 import Card from '@/components/Card';
 
-
 const Links = () => {
 
     const { data } = useContext(AppContext);
@@ -22,12 +21,11 @@ const Links = () => {
 
 export default Links;
 
-
 const ContactItem = ({ icon, url }: { icon: string, url: string }) => {
     return <>
         <span className='flex flex-row items-center gap-2'>
             <i className={icon}></i>
-            <a href={url} target='_blank' className='link link-hover text-base-content underline'>{url}</a>
+            <a href={url} target='_blank' className='link link-hover'>{url}</a>
         </span>
     </>
 }
