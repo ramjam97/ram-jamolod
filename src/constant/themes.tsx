@@ -1,7 +1,8 @@
 
 export const THEME_SESSION_NAME = "portfolio-theme";
-export const DEFAULT_THEME = "light";
+export const DEFAULT_THEME = "ramjam";
 export const THEMES_COLLECTION = [
+    "ramjam",
     "light",
     "dark",
     "cupcake",
