@@ -31,12 +31,12 @@ const ExperienceItem = (props: ExperiencesItemProps) => {
             </span>
 
             <details className="collapse" open={isOpen}>
-                <summary className="collapse-title p-0 px-1" onClick={handleCollapse}>
+                <summary className="collapse-title p-2" onClick={handleCollapse}>
                     <div className="font-bold">{item.position}</div>
                     <div className="font-semibold">{item.company}</div>
                     <div className="text-sm text-base-content/70">{item.address}</div>
                 </summary>
-                <div className="collapse-content text-sm px-1 mt-1">
+                <div className="collapse-content text-sm px-2 mt-1">
                     <span className="font-semibold">Key Achievements:</span>
                     <ul className="list-none space-y-1">
                         {item.contributions.map((contribution, index) => <li key={index} className="relative pl-5 before:content-['→'] before:absolute before:left-0 before:text-base-content">

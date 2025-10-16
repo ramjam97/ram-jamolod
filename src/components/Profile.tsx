@@ -29,7 +29,7 @@ const Profile = () => {
                 </div>
             </span>
 
-            <h2 className="card-title text-2xl">{data.name}</h2>
+            <h2 className="card-title text-2xl text-primary">{data.name}</h2>
 
             <div className='flex flex-wrap gap-1 mb-1'>
                 {data.roles.map((role, index) => <span className='badge badge-primary text-primary-content' key={index}>{role}</span>)}
