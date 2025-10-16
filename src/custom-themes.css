@@ -208,6 +208,7 @@
     --noise: 1;
 }
 
+
 @plugin "daisyui/theme" {
   name: "coldnight";
   default: false;
@@ -222,7 +223,7 @@
   --color-secondary: oklch(70% 0.14 182.503);
   --color-secondary-content: oklch(27% 0.046 192.524);
   --color-accent: oklch(60% 0.126 221.723);
-  --color-accent-content: oklch(91% 0.08 205.041);
+  --color-accent-content: oklch(98% 0.019 200.873);
   --color-neutral: oklch(50% 0.134 242.749);
   --color-neutral-content: oklch(95% 0.026 236.824);
   --color-info: oklch(70% 0.165 254.624);
