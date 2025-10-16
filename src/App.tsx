@@ -20,6 +20,11 @@ function App() {
   const [showThemeController, setShowThemeController] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem('portfolio-theme') || 'light');
 
+
+  useEffect(() => {
+    console.log('%cmounted','color:red');
+  }, []);
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('portfolio-theme', theme);

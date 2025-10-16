@@ -21,8 +21,12 @@ const Profile = () => {
                 </button>
             </span>
 
-            <span className='sm:w-[40%] md:w-full w-[50%] mx-auto p-3 flex items-center justify-center'>
-                <img src={data.img} className='rounded-full' />
+            <span className='p-3 flex items-center justify-center'>
+                <div className='avatar'>
+                    <div className='w-50'>
+                        <img src={data.img} className='skeleton rounded-full text-transparent' alt={data.name} />
+                    </div>
+                </div>
             </span>
 
             <h2 className="card-title text-2xl">{data.name}</h2>
