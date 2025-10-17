@@ -1,6 +1,6 @@
 
 export const THEME_SESSION_NAME = "portfolio-theme";
-export const DEFAULT_THEME = "aggressive";
+export const DEFAULT_THEME = "light";
 export const THEMES_COLLECTION = [
     "aggressive",
     "tinykitten",
@@ -12,6 +12,7 @@ export const THEMES_COLLECTION = [
     "bored",
     "redwine",
     "grape",
+    "simple",
     "light",
     "dark",
     "cyberpunk",
