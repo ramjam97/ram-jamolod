@@ -1,4 +1,5 @@
 import type { EducationItemProps } from "@/types/cv";
+import TimelineRibbon from "./TimelineRibbon";
 
 interface EducItemProps {
     index: number;
@@ -13,10 +14,7 @@ const EducationItem = ({ index, total, item }: EducItemProps) => {
     return <>
         <div className={`border-secondary border-s pt-7 pb-3 ps-2 relative`}>
 
-            <span className="px-2 absolute top-0 left-0 bg-secondary text-secondary-content">
-                <span>{date}</span>
-                <span className="absolute top-[50%] left-0 w-2 h-2 bg-secondary border border-secondary transform translate-y-[-50%] translate-x-[-50%] rotate-45"></span>
-            </span>
+            <TimelineRibbon content={date} type="secondary" />
 
             <div className="p-2">
                 <div className="font-bold">{item.degree}</div>

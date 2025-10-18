@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import type { ExperienceItemProps } from "@/types/cv";
+import TimelineRibbon from "./TimelineRibbon";
 
 interface ExperiencesItemProps {
     index: number;
@@ -24,10 +25,7 @@ const ExperienceItem = (props: ExperiencesItemProps) => {
     return <>
         <div className={`border-info border-s pt-7 pb-3 ps-2 relative`}>
 
-            <span className="px-2 absolute top-0 left-0 bg-info text-info-content">
-                <span>{date}</span>
-                <span className="absolute top-[50%] left-0 w-2 h-2 bg-info border border-info transform translate-y-[-50%] translate-x-[-50%] rotate-45"></span>
-            </span>
+            <TimelineRibbon content={date} type="info" />
 
             <details className="collapse" open={isOpen}>
                 <summary className="collapse-title p-2" onClick={handleCollapse}>
