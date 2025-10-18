@@ -17,9 +17,9 @@ const useMenu = (): [MenuItemProps[], (id: string, isShow: boolean) => void] => 
 
     const [menu, setMenu] = useState<MenuItemProps[]>([
         { id: ID_PROFILE, name: 'Profile', show: true },
+        { id: ID_ABOUT, name: 'About', show: true },
         { id: ID_CONTACTS, name: 'Contacts', show: true },
         { id: ID_LINKS, name: 'Connect With Me', show: true },
-        { id: ID_ABOUT, name: 'About', show: true },
         { id: ID_SKILLS, name: 'Skills', show: true },
         { id: ID_EXPERIENCE, name: 'Experience', show: true },
         { id: ID_EDUCATION, name: 'Education', show: true },
