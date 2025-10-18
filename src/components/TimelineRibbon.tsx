@@ -5,7 +5,7 @@ interface TimelineRibbonProps {
 
 const TimelineRibbon = ({ content, type }: TimelineRibbonProps) => {
 
-    const parentClass = `px-2 pe-4 absolute top-0 left-0 bg-${type}`;
+    const parentClass = `px-2 pe-4 absolute top-0 left-0 bg-${type} text-${type}-content`;
     const labelClass = `text-${type}-content`;
     const childClass = `bg-${type} border border-${type} absolute top-[50%] left-0 transform translate-y-[-50%] translate-x-[-50%] rotate-45 w-2 h-2`;
 
