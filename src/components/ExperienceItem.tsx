@@ -23,7 +23,7 @@ const ExperienceItem = (props: ExperiencesItemProps) => {
     }
 
     return <>
-        <div className={`border-info border-s pt-7 pb-3 ps-2 relative`}>
+        <div className="border-info border-s pt-7 pb-3 ps-2 relative">
 
             <TimelineRibbon content={date} type="info" />
 
