@@ -17,7 +17,7 @@ export interface SkillItem {
     skills: string[];
 }
 
-interface EducationItem {
+export interface EducationItemProps {
     institution: string;
     degree: string;
     start_date: string;
@@ -42,5 +42,5 @@ export type DetailsProps = {
     links: LinkItem[];
     technical_skills: SkillItem[];
     experience: ExperienceItemProps[];
-    education: EducationItem[];
+    education: EducationItemProps[];
 }

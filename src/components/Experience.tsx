@@ -1,11 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@/App";
 import ExperienceItem from "@/components/ExperienceItem";
 import Card from "@/components/Card";
 
+export const ID_EXPERIENCE = "experience";
+
 const Experience = () => {
 
-    const { data } = useContext(AppContext);
+    const { data, setMenuVisibility } = useContext(AppContext);
 
     const experience = data.experience || [];
 
@@ -22,9 +24,14 @@ const Experience = () => {
         ? setCollapsedItems([])
         : setCollapsedItems(experience.map((_, index) => index));
 
+
+    useEffect(() => {
+        setMenuVisibility(ID_EXPERIENCE, experience.length > 0);
+    }, []);
+
     return <>
         {experience.length > 0 &&
-            <Card>
+            <Card id={ID_EXPERIENCE}>
                 <div className="flex justify-between items-center">
                     <h2 className="card-title text-primary text-xl">🚀 Experience</h2>
                     <label className="btn btn-circle btn-ghost swap swap-rotate">

@@ -3,6 +3,7 @@ import { AppContext } from '@/App'
 import Card from '@/components/Card';
 import DownloadButton from '@/components/DownloadButton';
 
+export const ID_PROFILE = "profile";
 
 const Profile = () => {
 
@@ -13,7 +14,7 @@ const Profile = () => {
     }, []);
 
     return <>
-        <Card>
+        <Card id={ID_PROFILE}>
 
             <span className='absolute top-2 right-2'>
                 <button className='btn btn-soft btn-primary rounded-full btn-square btn-sm' onClick={() => setShowThemeController(true)} disabled={showThemeController}>

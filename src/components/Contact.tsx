@@ -1,18 +1,25 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { AppContext } from '@/App';
 import Card from '@/components/Card';
 
+export const ID_CONTACTS = "contacts";
 
 const Contact = () => {
 
-    const { data } = useContext(AppContext);
+    const { data, setMenuVisibility } = useContext(AppContext);
 
     const phone_numbers = data.phone_numbers || [];
     const emails = data.emails || [];
 
+    const hasContent = useMemo(() => phone_numbers.length > 0 || emails.length > 0, [phone_numbers, emails]);
+
+    useEffect(() => {
+        setMenuVisibility(ID_CONTACTS, hasContent);
+    }, [hasContent]);
+
     return <>
-        {(phone_numbers.length > 0 || emails.length > 0) &&
-            <Card title='📱 Contacts'>
+        {hasContent &&
+            <Card title='📱 Contacts' id={ID_CONTACTS}>
                 <div className='flex flex-col gap-0 px-1'>
                     {phone_numbers.map((number, index) => <ContactItem key={index} icon='pi pi-phone' text={number} />)}
                     {emails.map((email, index) => <ContactItem key={index} icon='pi pi-envelope' text={email} />)}

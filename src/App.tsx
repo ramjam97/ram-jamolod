@@ -2,7 +2,9 @@ import React, { createContext, useEffect, useState } from 'react';
 import type { DetailsProps } from '@/types/cv';
 import Data from '@/assets/data.json';
 import Layout from '@/components/Layout';
-import { DEFAULT_THEME, THEME_SESSION_NAME } from './constant/themes';
+import { DEFAULT_THEME, THEME_SESSION_NAME } from '@/constant/themes';
+import useMenu, { type MenuItemProps } from './hooks/useMenu';
+
 
 interface AppContextProps {
   data: DetailsProps | undefined | null;
@@ -10,6 +12,8 @@ interface AppContextProps {
   setShowThemeController: React.Dispatch<React.SetStateAction<boolean>>;
   theme: string;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
+  menu: MenuItemProps[];
+  setMenuVisibility: (id: string, isShow: boolean) => void;
 }
 
 export const AppContext = createContext<AppContextProps>(null);
@@ -20,6 +24,7 @@ function App() {
 
   const [showThemeController, setShowThemeController] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem(THEME_SESSION_NAME) || DEFAULT_THEME);
+  const [menu, setMenuVisibility] = useMenu();
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -31,7 +36,9 @@ function App() {
     showThemeController,
     setShowThemeController,
     theme,
-    setTheme
+    setTheme,
+    menu,
+    setMenuVisibility
   }
 
   return <>
