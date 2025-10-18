@@ -6,8 +6,8 @@ import Skills from "@/components/Skills"
 import ThemeDrawer from "@/components/ThemeDrawer"
 import Experiences from "@/components/Experience"
 import Footer from "@/components/Footer"
-import Menu from "./Menu"
-import Education from "./Education"
+import Menu from "@/components/Menu"
+import Education from "@/components/Education"
 
 const Layout = () => {
     return <>

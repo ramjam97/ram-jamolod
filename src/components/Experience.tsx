@@ -24,7 +24,6 @@ const Experience = () => {
         ? setCollapsedItems([])
         : setCollapsedItems(experience.map((_, index) => index));
 
-
     useEffect(() => {
         setMenuVisibility(ID_EXPERIENCE, experience.length > 0);
     }, []);

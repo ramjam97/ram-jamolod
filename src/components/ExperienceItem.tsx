@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import type { ExperienceItemProps } from "@/types/cv";
-import TimelineRibbon from "./TimelineRibbon";
+import TimelineRibbon from "@/components/TimelineRibbon";
 
 interface ExperiencesItemProps {
     index: number;

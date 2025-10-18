@@ -1,5 +1,5 @@
 import type { EducationItemProps } from "@/types/cv";
-import TimelineRibbon from "./TimelineRibbon";
+import TimelineRibbon from "@/components/TimelineRibbon";
 
 interface EducItemProps {
     index: number;
