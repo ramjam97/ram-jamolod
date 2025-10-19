@@ -11,7 +11,6 @@ export const THEMES_COLLECTION = [
     "coldnight",
     "bored",
     "redwine",
-    "grape",
     "simple",
     "light",
     "dark",

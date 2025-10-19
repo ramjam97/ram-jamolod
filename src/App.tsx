@@ -33,12 +33,9 @@ function App() {
 
   const appContextData: AppContextProps = {
     data,
-    showThemeController,
-    setShowThemeController,
-    theme,
-    setTheme,
-    menu,
-    setMenuVisibility
+    showThemeController, setShowThemeController,
+    theme, setTheme,
+    menu, setMenuVisibility
   }
 
   return <>
