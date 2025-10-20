@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { AppContext } from '@/App'
 import Card from '@/components/Card';
 import DownloadButton from '@/components/DownloadButton';
@@ -8,10 +8,6 @@ export const ID_PROFILE = "profile";
 const Profile = () => {
 
     const { data, showThemeController, setShowThemeController } = useContext(AppContext);
-
-    useEffect(() => {
-        document.title = `${data.name} | Portfolio`;
-    }, []);
 
     return <>
         <Card id={ID_PROFILE}>
