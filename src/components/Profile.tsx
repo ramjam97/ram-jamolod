@@ -45,7 +45,7 @@ const Profile = () => {
                 <span className='flex flex-wrap flex-row gap-1 items-center'>
                     <img alt="Status" src="https://img.shields.io/badge/status-available-success" />
                     <a href="https://hits.sh/ramjam97.github.io/ram-jamolod/" target='_blank'>
-                        <img alt="Hits" src="https://hits.sh/ramjam97.github.io/ram-jamolod.svg" />
+                        <img alt="Hits" src="https://hits.sh/ramjam97.github.io/ram-jamolod.svg?label=views" />
                     </a>
                 </span>
 
