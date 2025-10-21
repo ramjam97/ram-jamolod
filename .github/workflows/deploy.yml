@@ -2,7 +2,7 @@ name: Deploy Vite App to GitHub Pages (CI/CD)
 
 on:
   push:
-    branches: [master] # Trigger on push to master
+    branches: [master]
 
 permissions:
   contents: read
@@ -12,6 +12,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -42,3 +43,19 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # ✅ Send success message to Slack
+      - name: Notify Slack (Success)
+        if: success()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":":rocket: *Deployment succeeded!* \n✅ *Project:* ram-jamolod \n🌿 *Branch:* '${{ github.ref_name }}' \n👤 *By:* '${{ github.actor }}' \n🔗 <${{ steps.deployment.outputs.page_url }}|View live site>"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      # 🚨 Send failure message to Slack
+      - name: Notify Slack (Failure)
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":":x: *Deployment failed!* \n❗ *Project:* ram-jamolod \n🌿 *Branch:* '${{ github.ref_name }}' \n👤 *By:* '${{ github.actor }}' \n🧾 Check logs: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Workflow Run>"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
