@@ -51,7 +51,7 @@ jobs:
           SLACK_USERNAME: "Builder Bot"
           SLACK_ICON_EMOJI: ":gear:"
           SLACK_TITLE: "❌ Building Failed"
-          SLACK_MESSAGE: "Building failed for *${{ github.repository }}*. Please check the logs."
+          SLACK_MESSAGE: "Building failed for <https://github.com/${{ github.repository }}|${{ github.repository }}>. Please check the logs."
           SLACK_COLOR: "#FF0000"
 
   deploy:
@@ -74,7 +74,7 @@ jobs:
           SLACK_ICON_EMOJI: ":rocket:"
           SLACK_TITLE: "✅ Deployment Successful"
           SLACK_MESSAGE: |
-            Deployment to *GitHub Pages* completed successfully for *${{ github.repository }}*.
+            Deployment to *GitHub Pages* completed successfully for <https://github.com/${{ github.repository }}|${{ github.repository }}>.
             View your site at: ${{ steps.deployment.outputs.page_url }}
           SLACK_COLOR: "#36A64F"
 
@@ -86,5 +86,5 @@ jobs:
           SLACK_USERNAME: "Deployer Bot"
           SLACK_ICON_EMOJI: ":rocket:"
           SLACK_TITLE: "❌ Deployment Failed"
-          SLACK_MESSAGE: "Deployment failed for *${{ github.repository }}*. Please check the logs."
+          SLACK_MESSAGE: "Deployment failed for <https://github.com/${{ github.repository }}|${{ github.repository }}>. Please check the logs."
           SLACK_COLOR: "#FF0000"
