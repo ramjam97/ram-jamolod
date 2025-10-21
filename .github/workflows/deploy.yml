@@ -17,10 +17,11 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
         uses: rtCamp/action-slack-notify@v2
         env:
+          SLACK_ICON_URL: "https://avatars.githubusercontent.com/u/60874051?s=400&u=3ec65e75b5bc426b791de808acd0aaf40f1a1b2c&v=4"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: "RamTech Engine"
           SLACK_TITLE: "🚀 Deployment Queued"
-          SLACK_MESSAGE: ":scroll: A new deployment for *${{ github.repository }}* has been queued."
+          SLACK_MESSAGE: "A new deployment for *${{ github.repository }}* has been queued."
           SLACK_COLOR: "#FFD700"
 
       - name: Checkout code
@@ -57,20 +58,20 @@ jobs:
         if: ${{ success() }}
         uses: rtCamp/action-slack-notify@v2
         env:
+          SLACK_ICON_URL: "https://avatars.githubusercontent.com/u/60874051?s=400&u=3ec65e75b5bc426b791de808acd0aaf40f1a1b2c&v=4"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: "RamTech Engine"
           SLACK_TITLE: "✅ Deployment Successful"
-          SLACK_MESSAGE: |
-            :scroll: Deployment to *GitHub Pages* completed successfully for ${{ github.repository }}.
-            :link: View live site: https://ramjam97.github.io/ram-jamolod/
+          SLACK_MESSAGE: "Deployment to *GitHub Pages* completed successfully for ${{ github.repository }}."
           SLACK_COLOR: "#36A64F"
 
       - name: Notify Slack (Failure)
         if: ${{ failure() }}
         uses: rtCamp/action-slack-notify@v2
         env:
+          SLACK_ICON_URL: "https://avatars.githubusercontent.com/u/60874051?s=400&u=3ec65e75b5bc426b791de808acd0aaf40f1a1b2c&v=4"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: "RamTech Engine"
           SLACK_TITLE: "❌ Deployment Failed"
-          SLACK_MESSAGE: ":scroll: Deployment failed for *${{ github.repository }}*. Please check the logs."
+          SLACK_MESSAGE: "Deployment failed for *${{ github.repository }}*. Please check the logs."
           SLACK_COLOR: "#FF0000"
