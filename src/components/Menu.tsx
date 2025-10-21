@@ -1,6 +1,6 @@
+import { useContext } from "react"
 import { AppContext } from "@/App"
 import type { MenuItemProps } from "@/hooks/useMenu";
-import { useContext } from "react"
 
 const Menu = () => {
 

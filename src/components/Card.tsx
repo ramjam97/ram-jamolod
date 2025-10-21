@@ -1,4 +1,3 @@
-
 interface CardProps {
     title?: string;
     id?: string;

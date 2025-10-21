@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
-import Card from "./Card";
+import Card from "@/components/Card";
 import { AppContext } from "@/App";
-import EducationItem from "./EducationItem";
+import EducationItem from "@/components/EducationItem";
 
 export const ID_EDUCATION = "education";
 const Education = () => {

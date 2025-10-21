@@ -7,7 +7,6 @@ interface ThemeItemProps {
 
 const ThemeItem = ({ item }: ThemeItemProps) => {
     const { theme, setTheme } = useContext(AppContext);
-
     return <li>
         <a className={`${theme === item && 'menu-active'} w-[99%] mx-auto`} onClick={() => setTheme(item)}>{item}</a>
     </li>

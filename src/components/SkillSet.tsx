@@ -4,7 +4,6 @@ interface SkillSetProps {
 }
 
 const SkillSet = ({ title, skills }: SkillSetProps) => {
-
     return <>
         {skills.length > 0 && <>
             <span className="flex flex-col gap-1">

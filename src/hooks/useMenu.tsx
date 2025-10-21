@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ID_EXPERIENCE } from '@/components/Experience';
 import { ID_ABOUT } from '@/components/About';
 import { ID_CONTACTS } from '@/components/Contact';
@@ -5,7 +6,6 @@ import { ID_LINKS } from '@/components/Links';
 import { ID_SKILLS } from '@/components/Skills';
 import { ID_PROFILE } from '@/components/Profile';
 import { ID_EDUCATION } from '@/components/Education';
-import { useState } from 'react';
 
 export interface MenuItemProps {
     id: string;

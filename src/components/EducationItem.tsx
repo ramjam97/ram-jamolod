@@ -7,9 +7,7 @@ interface EducItemProps {
 }
 
 const EducationItem = ({ index, total, item }: EducItemProps) => {
-
     const date = `${item.start_date} - ${item.end_date}`;
-
     return <>
         <div className={`border-secondary border-s pt-7 pb-3 ps-2 relative`}>
 

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { AppContext } from '../App';
-import Card from './Card';
+import { AppContext } from '@/App';
+import Card from '@/components/Card';
 
 export const ID_ABOUT = "about";
 const About = () => {

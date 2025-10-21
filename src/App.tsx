@@ -1,10 +1,9 @@
 import React, { createContext, useEffect, useState } from 'react';
-import type { DetailsProps } from '@/types/cv';
 import Data from '@/assets/data.json';
-import Layout from '@/components/Layout';
+import type { DetailsProps } from '@/types/cv';
 import { DEFAULT_THEME, THEME_SESSION_NAME } from '@/constant/themes';
-import useMenu, { type MenuItemProps } from './hooks/useMenu';
-
+import useMenu, { type MenuItemProps } from '@/hooks/useMenu';
+import Layout from '@/components/Layout';
 
 interface AppContextProps {
   data: DetailsProps | undefined | null;
