@@ -5,27 +5,22 @@ on:
     branches: [master]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
-    steps:
-      # 🕐 Notify Slack - Workflow Queued / Started
-      - name: Notify Slack (Queued)
-        run: |
-          curl -X POST -H 'Content-type: application/json' \
-          --data '{"text":":hourglass_flowing_sand: *Deployment queued...*\n:white_check_mark: Project: ram-jamolod\n:herb: Branch: '${{ github.ref_name }}'\n:bust_in_silhouette: By: '${{ github.actor }}'"}' \
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+    permissions:
+      contents: write
 
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Record start time
+        id: start_time
+        run: echo "start_time=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -36,27 +31,31 @@ jobs:
       - name: Build Vite app
         run: npm run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
 
-      # ✅ Notify Slack - Success
+      - name: Calculate duration
+        id: duration
+        run: |
+          end_time=$(date +%s)
+          duration=$((end_time - $start_time))
+          echo "duration=${duration}" >> $GITHUB_ENV
+
       - name: Notify Slack (Success)
         if: success()
         run: |
+          mins=$((duration / 60))
+          secs=$((duration % 60))
           curl -X POST -H 'Content-type: application/json' \
-          --data '{"text":":rocket: *Deployment succeeded!*\n:white_check_mark: Project: ram-jamolod\n:herb: Branch: '${{ github.ref_name }}'\n:bust_in_silhouette: By: '${{ github.actor }}'\n:link: <${{ steps.deployment.outputs.page_url }}|View live site>"}' \
+          --data "{\"text\":\":rocket: Deployment succeeded!\n:white_check_mark: Project: ram-jamolod\n:herb: Branch: master\n:bust_in_silhouette: By: $GITHUB_ACTOR\n:link: View live site: https://ramjam97.github.io/ram-jamolod/\n:stopwatch: Duration: ${mins}m ${secs}s\n:gear: Action: Deploy Vite App to GitHub Pages (CI/CD)\n:page_facing_up: Commit: ${GITHUB_SHA:0:7}\n:hammer_and_wrench: Actions URL: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\"}" \
           ${{ secrets.SLACK_WEBHOOK_URL }}
 
-      # ❌ Notify Slack - Failure
       - name: Notify Slack (Failure)
         if: failure()
         run: |
           curl -X POST -H 'Content-type: application/json' \
-          --data '{"text":":x: *Deployment failed!*\n:white_check_mark: Project: ram-jamolod\n:herb: Branch: '${{ github.ref_name }}'\n:bust_in_silhouette: By: '${{ github.actor }}'\n:page_facing_up: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View logs>"}' \
+          --data "{\"text\":\":x: Deployment failed!\n:herb: Branch: master\n:bust_in_silhouette: By: $GITHUB_ACTOR\n:gear: Action: Deploy Vite App to GitHub Pages (CI/CD)\n:page_facing_up: Commit: ${GITHUB_SHA:0:7}\n:hammer_and_wrench: Actions URL: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\"}" \
           ${{ secrets.SLACK_WEBHOOK_URL }}
