@@ -2,7 +2,7 @@ name: Deploy Vite App to GitHub Pages (CI/CD)
 
 on:
   push:
-    branches: [master]
+    branches: [master]  # ✅ triggers deployment whenever you push to 'master'
 
 jobs:
   build-and-deploy:
