@@ -23,7 +23,7 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: "GitHub Actions"
           SLACK_TITLE: "🚀 Deployment Queued"
-          SLACK_MESSAGE: "A new deployment for *${{ github.repository }}* has been queued."
+          SLACK_MESSAGE: ":scroll: A new deployment for *${{ github.repository }}* has been queued."
           SLACK_COLOR: "#FFD700"
 
       - name: Checkout code
@@ -76,5 +76,5 @@ jobs:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: "GitHub Actions"
           SLACK_TITLE: "❌ Deployment Failed"
-          SLACK_MESSAGE: "Deployment failed for *${{ github.repository }}*. Please check the logs."
+          SLACK_MESSAGE: ":scroll: Deployment failed for *${{ github.repository }}*. Please check the logs."
           SLACK_COLOR: "#FF0000"
