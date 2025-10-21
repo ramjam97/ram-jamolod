@@ -1,6 +1,6 @@
 
 export const THEME_SESSION_NAME = "portfolio-theme";
-export const DEFAULT_THEME = "bored";
+export const DEFAULT_THEME = "fullape";
 export const THEMES_COLLECTION = [
     "aggressive",
     "tinykitten",

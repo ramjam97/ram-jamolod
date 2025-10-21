@@ -1,8 +1,7 @@
 {
   "name": "ram-jamolod",
   "private": true,
-  "version": "1.6.2",
-  "homepage": "https://ramjam97.github.io/ram-jamolod",
+  "version": "1.6.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
