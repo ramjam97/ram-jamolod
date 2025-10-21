@@ -64,9 +64,6 @@ jobs:
           SLACK_MESSAGE: |
             :scroll: Deployment to *GitHub Pages* completed successfully for ${{ github.repository }}.
             :link: View live site: https://ramjam97.github.io/ram-jamolod/
-            :gear: Action: Deploy Vite App to GitHub Pages (CI/CD)
-            :page_facing_up: Commit: ${{ github.sha }}
-            :hammer_and_wrench: Actions URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           SLACK_COLOR: "#36A64F"
 
       - name: Notify Slack (Failure)
