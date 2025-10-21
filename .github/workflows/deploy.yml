@@ -2,45 +2,33 @@ name: Deploy Vite App to GitHub Pages (CI/CD)
 
 on:
   push:
-    branches: [master]  # triggers on push to master
-  workflow_dispatch:     # allows manual run
-  workflow_run:          # optional: triggers on another workflow (queue-style)
-    workflows: ["Build and Test"]
-    types:
-      - completed
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  # needed for gh-pages
 
     steps:
+      # 🕐 Notify Slack - Workflow Queued / Started
       - name: Notify Slack (Queued)
-        if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: "GitHub Actions"
-          SLACK_TITLE: "🚀 Deployment Queued"
-          SLACK_MESSAGE: "A new deployment for *${{ github.repository }}* has been queued."
-          SLACK_COLOR: "#FFD700"
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":":hourglass_flowing_sand: *Deployment queued...*\n:white_check_mark: Project: ram-jamolod\n:herb: Branch: '${{ github.ref_name }}'\n:bust_in_silhouette: By: '${{ github.actor }}'"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: npm ci
@@ -48,28 +36,27 @@ jobs:
       - name: Build Vite app
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload build artifacts
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          path: ./dist
 
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # ✅ Notify Slack - Success
       - name: Notify Slack (Success)
-        if: ${{ success() }}
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: "GitHub Actions"
-          SLACK_TITLE: "✅ Deployment Successful"
-          SLACK_MESSAGE: "Deployment to *GitHub Pages* completed successfully for ${{ github.repository }}."
-          SLACK_COLOR: "#36A64F"
+        if: success()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":":rocket: *Deployment succeeded!*\n:white_check_mark: Project: ram-jamolod\n:herb: Branch: '${{ github.ref_name }}'\n:bust_in_silhouette: By: '${{ github.actor }}'\n:link: <${{ steps.deployment.outputs.page_url }}|View live site>"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
 
+      # ❌ Notify Slack - Failure
       - name: Notify Slack (Failure)
-        if: ${{ failure() }}
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: "GitHub Actions"
-          SLACK_TITLE: "❌ Deployment Failed"
-          SLACK_MESSAGE: "Deployment failed for *${{ github.repository }}*. Please check the logs."
-          SLACK_COLOR: "#FF0000"
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{"text":":x: *Deployment failed!*\n:white_check_mark: Project: ram-jamolod\n:herb: Branch: '${{ github.ref_name }}'\n:bust_in_silhouette: By: '${{ github.actor }}'\n:page_facing_up: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View logs>"}' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
