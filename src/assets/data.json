@@ -72,14 +72,21 @@
             ]
         },
         {
-            "title": "Other Tools & Platforms",
+            "title": "DevOps & Automation",
             "skills": [
                 "Git",
-                "Microsoft 365",
-                "Sharepoint",
-                "Power Apps",
+                "CI/CD",
+                "GitHub Actions",
                 "Power Automate",
                 "Zapier"
+            ]
+        },
+        {
+            "title": "Other Tools & Platforms",
+            "skills": [
+                "Microsoft 365",
+                "SharePoint",
+                "Power Apps"
             ]
         }
     ],
