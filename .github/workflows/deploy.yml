@@ -21,7 +21,7 @@ jobs:
           SLACK_USERNAME: "Builder Bot"
           SLACK_ICON_EMOJI: ":gear:"
           SLACK_TITLE: "🚀 Deployment Queued"
-          SLACK_MESSAGE: "A new deployment for *${{ github.repository }}* has been queued."
+          SLACK_MESSAGE: "A new deployment for <${{ github.repository.url }}|${{ github.repository }}> has been queued."
           SLACK_COLOR: "#FFD700"
 
       - name: Checkout code
@@ -74,7 +74,7 @@ jobs:
           SLACK_ICON_EMOJI: ":rocket:"
           SLACK_TITLE: "✅ Deployment Successful"
           SLACK_MESSAGE: |
-            Deployment to *GitHub Pages* completed successfully for ${{ github.repository }}.
+            Deployment to *GitHub Pages* completed successfully for *${{ github.repository }}*.
             View your site at: ${{ steps.deployment.outputs.page_url }}
           SLACK_COLOR: "#36A64F"
 
