@@ -2,25 +2,45 @@ name: Deploy Vite App to GitHub Pages (CI/CD)
 
 on:
   push:
-    branches: [master]
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches: [master]  # triggers on push to master
+  workflow_dispatch:     # allows manual run
+  workflow_run:          # optional: triggers on another workflow (queue-style)
+    workflows: ["Build and Test"]
+    types:
+      - completed
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # needed for gh-pages
 
     steps:
+      - name: Notify Slack (Queued)
+        if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_USERNAME: "GitHub Actions"
+          SLACK_TITLE: "🚀 Deployment Queued"
+          SLACK_MESSAGE: "A new deployment for *${{ github.repository }}* has been queued."
+          SLACK_COLOR: "#FFD700"
+
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: npm ci
@@ -28,34 +48,28 @@ jobs:
       - name: Build Vite app
         run: npm run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
 
-      # ✅ Send success message to Slack
       - name: Notify Slack (Success)
-        if: success()
-        run: |
-          curl -X POST -H 'Content-type: application/json' \
-          --data '{"text":":rocket: *Deployment succeeded!* \n✅ *Project:* ram-jamolod \n🌿 *Branch:* '${{ github.ref_name }}' \n👤 *By:* '${{ github.actor }}' \n🔗 <${{ steps.deployment.outputs.page_url }}|View live site>"}' \
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: ${{ success() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_USERNAME: "GitHub Actions"
+          SLACK_TITLE: "✅ Deployment Successful"
+          SLACK_MESSAGE: "Deployment to *GitHub Pages* completed successfully for ${{ github.repository }}."
+          SLACK_COLOR: "#36A64F"
 
-      # 🚨 Send failure message to Slack
       - name: Notify Slack (Failure)
-        if: failure()
-        run: |
-          curl -X POST -H 'Content-type: application/json' \
-          --data '{"text":":x: *Deployment failed!* \n❗ *Project:* ram-jamolod \n🌿 *Branch:* '${{ github.ref_name }}' \n👤 *By:* '${{ github.actor }}' \n🧾 Check logs: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Workflow Run>"}' \
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: ${{ failure() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_USERNAME: "GitHub Actions"
+          SLACK_TITLE: "❌ Deployment Failed"
+          SLACK_MESSAGE: "Deployment failed for *${{ github.repository }}*. Please check the logs."
+          SLACK_COLOR: "#FF0000"
