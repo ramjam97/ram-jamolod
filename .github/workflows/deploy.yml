@@ -19,7 +19,6 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: "RamTech Engine"
-          SLACK_ICON_URL: "https://avatars.githubusercontent.com/u/60874051?s=400&u=3ec65e75b5bc426b791de808acd0aaf40f1a1b2c&v=4"
           SLACK_ICON_EMOJI: ":rocket:"
           SLACK_TITLE: "🚀 Deployment Queued"
           SLACK_MESSAGE: "A new deployment for *${{ github.repository }}* has been queued."
@@ -43,6 +42,17 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+      
+      - name: Notify Slack (Failure)
+        if: ${{ failure() }}
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_USERNAME: "RamTech Engine"
+          SLACK_ICON_EMOJI: ":rocket:"
+          SLACK_TITLE: "❌ Building Failed"
+          SLACK_MESSAGE: "Building failed for *${{ github.repository }}*. Please check the logs."
+          SLACK_COLOR: "#FF0000"
 
   deploy:
     needs: build
@@ -61,7 +71,6 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: "RamTech Engine"
-          SLACK_ICON_URL: "https://avatars.githubusercontent.com/u/60874051?s=400&u=3ec65e75b5bc426b791de808acd0aaf40f1a1b2c&v=4"
           SLACK_ICON_EMOJI: ":rocket:"
           SLACK_TITLE: "✅ Deployment Successful"
           SLACK_MESSAGE: |
@@ -75,7 +84,6 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: "RamTech Engine"
-          SLACK_ICON_URL: "https://avatars.githubusercontent.com/u/60874051?s=400&u=3ec65e75b5bc426b791de808acd0aaf40f1a1b2c&v=4"
           SLACK_ICON_EMOJI: ":rocket:"
           SLACK_TITLE: "❌ Deployment Failed"
           SLACK_MESSAGE: "Deployment failed for *${{ github.repository }}*. Please check the logs."
