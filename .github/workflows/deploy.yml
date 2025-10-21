@@ -18,8 +18,8 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: "RamTech Engine"
-          SLACK_ICON_EMOJI: ":rocket:"
+          SLACK_USERNAME: "Builder Bot"
+          SLACK_ICON_EMOJI: ":gear:"
           SLACK_TITLE: "🚀 Deployment Queued"
           SLACK_MESSAGE: "A new deployment for *${{ github.repository }}* has been queued."
           SLACK_COLOR: "#FFD700"
@@ -48,8 +48,8 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: "RamTech Engine"
-          SLACK_ICON_EMOJI: ":rocket:"
+          SLACK_USERNAME: "Builder Bot"
+          SLACK_ICON_EMOJI: ":gear:"
           SLACK_TITLE: "❌ Building Failed"
           SLACK_MESSAGE: "Building failed for *${{ github.repository }}*. Please check the logs."
           SLACK_COLOR: "#FF0000"
@@ -70,7 +70,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: "RamTech Engine"
+          SLACK_USERNAME: "Deployer Bot"
           SLACK_ICON_EMOJI: ":rocket:"
           SLACK_TITLE: "✅ Deployment Successful"
           SLACK_MESSAGE: |
@@ -83,7 +83,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_USERNAME: "RamTech Engine"
+          SLACK_USERNAME: "Deployer Bot"
           SLACK_ICON_EMOJI: ":rocket:"
           SLACK_TITLE: "❌ Deployment Failed"
           SLACK_MESSAGE: "Deployment failed for *${{ github.repository }}*. Please check the logs."
