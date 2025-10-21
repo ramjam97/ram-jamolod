@@ -11,17 +11,13 @@ const Menu = () => {
     return <>
         {!showThemeController && <>
             <div className="fab bottom-7">
-
-                <div tabIndex={0} role="button" className="btn btn-lg btn-circle btn-primary">
+                <div tabIndex={0} role="button" className="btn btn-lg btn-circle btn-info">
                     <i className="pi pi-ellipsis-v"></i>
                 </div>
-
                 <div className="fab-close">
                     <span className="btn btn-circle btn-lg btn-error">✕</span>
                 </div>
-
                 {list.map(item => <MenuItem key={item.id} item={item} />)}
-
             </div>
         </>}
     </>
