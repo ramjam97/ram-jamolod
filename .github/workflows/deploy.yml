@@ -62,7 +62,7 @@ jobs:
           SLACK_USERNAME: "GitHub Actions"
           SLACK_TITLE: "✅ Deployment Successful"
           SLACK_MESSAGE: |
-            Deployment to *GitHub Pages* completed successfully for ${{ github.repository }}.
+            :scroll: Deployment to *GitHub Pages* completed successfully for ${{ github.repository }}.
             :link: View live site: https://ramjam97.github.io/ram-jamolod/
             :gear: Action: Deploy Vite App to GitHub Pages (CI/CD)
             :page_facing_up: Commit: ${{ github.sha }}
