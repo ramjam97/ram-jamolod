@@ -33,7 +33,6 @@ export interface LinkItem {
 
 export type DetailsProps = {
     name: string;
-    img: string;
     roles: string[];
     about: string;
     address: string;

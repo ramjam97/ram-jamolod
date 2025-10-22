@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { AppContext } from '@/App'
 import Card from '@/components/Card';
 import DownloadButton from '@/components/DownloadButton';
+import ProfileImg from '@/assets/profile.jpg';
 
 export const ID_PROFILE = "profile";
 
@@ -23,7 +24,7 @@ const Profile = () => {
                 <span className='px-3 py-2 flex items-center justify-center'>
                     <div className='avatar'>
                         <div className='w-50'>
-                            <img src={data.img} className='skeleton rounded-full text-transparent' alt={data.name} />
+                            <img src={ProfileImg} className='skeleton rounded-full text-transparent' alt={data.name} />
                         </div>
                     </div>
                 </span>
