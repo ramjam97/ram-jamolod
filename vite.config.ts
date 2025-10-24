@@ -2,19 +2,18 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath } from 'url'
+import dotenv from 'dotenv'
 import { dirname, resolve } from 'path'
-
 
 // Get __dirname equivalent in ESM
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-// Detect if deploying to GitHub Pages (via environment variable)
-console.log('DEPLOY_TARGET:', process.env.DEPLOY_TARGET);
+dotenv.config()
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/ram-jamolod/',
+  base: process.env.VITE_BASE ? process.env.VITE_BASE : '/ram-jamolod/',
   plugins: [
     react(), tailwindcss(),
   ],
