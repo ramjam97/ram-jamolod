@@ -10,11 +10,11 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 // Detect if deploying to GitHub Pages (via environment variable)
-const isGitHubPages = process.env.DEPLOY_TARGET === 'GH_PAGES'
+console.log('DEPLOY_TARGET:', process.env.DEPLOY_TARGET);
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: isGitHubPages ? '/ram-jamolod/' : '/',
+  base: '/ram-jamolod/',
   plugins: [
     react(), tailwindcss(),
   ],
