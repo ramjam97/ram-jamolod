@@ -13,7 +13,7 @@ dotenv.config()
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.VITE_BASE ? process.env.VITE_BASE : '/',
+  base: process.env.VITE_BASE ? process.env.VITE_BASE : '/ram-jamolod/',
   plugins: [
     react(), tailwindcss(),
   ],
