@@ -3,8 +3,7 @@ import Data from '@/assets/data.json';
 import type { DetailsProps } from '@/types/cv';
 import { DEFAULT_THEME, THEME_SESSION_NAME } from '@/constant/themes';
 import useMenu, { type MenuItemProps } from '@/hooks/useMenu';
-import Layout from '@/components/Layout';
-import ScreenUnavailable from './components/ScreenUnavailable';
+import ScreenUnavailable from '@/components/ScreenUnavailable';
 
 interface AppContextProps {
   data: DetailsProps | undefined | null;
@@ -38,13 +37,12 @@ function App() {
     menu, setMenuVisibility
   }
 
-  return <ScreenUnavailable />
-
-  // return <>
-  //   <AppContext.Provider value={appContextData}>
-  //     <div className='bg-base-300 min-h-screen'>{data && <Layout />}</div>
-  //   </AppContext.Provider>
-  // </>
+  return <>
+    <AppContext.Provider value={appContextData}>
+      <ScreenUnavailable />
+      {/* <div className='bg-base-300 min-h-screen'>{data && <Layout />}</div> */}
+    </AppContext.Provider>
+  </>
 }
 
 export default App
