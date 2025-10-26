@@ -40,11 +40,11 @@ function App() {
 
   return <ScreenUnavailable />
 
-  return <>
-    <AppContext.Provider value={appContextData}>
-      <div className='bg-base-300 min-h-screen'>{data && <Layout />}</div>
-    </AppContext.Provider>
-  </>
+  // return <>
+  //   <AppContext.Provider value={appContextData}>
+  //     <div className='bg-base-300 min-h-screen'>{data && <Layout />}</div>
+  //   </AppContext.Provider>
+  // </>
 }
 
 export default App
