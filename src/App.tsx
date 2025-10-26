@@ -4,6 +4,7 @@ import type { DetailsProps } from '@/types/cv';
 import { DEFAULT_THEME, THEME_SESSION_NAME } from '@/constant/themes';
 import useMenu, { type MenuItemProps } from '@/hooks/useMenu';
 import Layout from '@/components/Layout';
+import ScreenUnavailable from './components/ScreenUnavailable';
 
 interface AppContextProps {
   data: DetailsProps | undefined | null;
@@ -36,6 +37,8 @@ function App() {
     theme, setTheme,
     menu, setMenuVisibility
   }
+
+  return <ScreenUnavailable />
 
   return <>
     <AppContext.Provider value={appContextData}>
