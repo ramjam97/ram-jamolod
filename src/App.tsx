@@ -4,7 +4,7 @@ import type { DetailsProps } from '@/types/cv';
 import { DEFAULT_THEME, THEME_SESSION_NAME } from '@/constant/themes';
 import useMenu, { type MenuItemProps } from '@/hooks/useMenu';
 import ScreenUnavailable from '@/components/ScreenUnavailable';
-import Layout from './components/Layout';
+import Layout from '@/components/Layout';
 
 interface AppContextProps {
   data: DetailsProps | undefined | null;
